@@ -10,3 +10,8 @@ bazel-out
 bazel-testlogs
 
 MODULE.bazel.lock
+
+.venv
+.DS_Store
+dist/
+.bazelrc

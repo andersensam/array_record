@@ -37,8 +37,8 @@ function main() {
 
   export USE_BAZEL_VERSION="${BAZEL_VERSION}"
   bazel clean
-  bazel build ... --action_env MACOSX_DEPLOYMENT_TARGET='11.0' --action_env PYTHON_BIN_PATH="${PYTHON_BIN}"
-  bazel test --verbose_failures --test_output=errors ... --action_env PYTHON_BIN_PATH="${PYTHON_BIN}"
+  bazel build ... --action_env MACOSX_DEPLOYMENT_TARGET='11.0' --action_env PYTHON_BIN_PATH="${PYTHON_BIN}" --check_direct_dependencies=off --per_file_copt=third_party/.*,external/.*@-Wno-error --per_file_copt=third_party/protobuf.*,external/protobuf.*@-fvisibility=hidden
+  bazel test --verbose_failures --test_output=errors ... --action_env PYTHON_BIN_PATH="${PYTHON_BIN}" --check_direct_dependencies=off --per_file_copt=third_party/.*,external/.*@-Wno-error --per_file_copt=third_party/protobuf.*,external/protobuf.*@-fvisibility=hidden
 
   DEST="/tmp/array_record/all_dist"
   # Create the directory, then do dirname on a non-existent file inside it to
@@ -90,7 +90,7 @@ function main() {
   $PYTHON_BIN -m pip install ${OUTPUT_DIR}/all_dist/array_record*.whl
   $PYTHON_BIN -c 'import array_record'
   $PYTHON_BIN -c 'from array_record.python import array_record_data_source'
-  $PYTHON_BIN -m pip install jax tensorflow>=2.20.0 grain
+  $PYTHON_BIN -m pip install -f https://storage.googleapis.com/axlearn-wheels/wheels.html jax tensorflow==2.19.1.1 grain
   # Re-enable the grain import test once the new version is released.
   # $PYTHON_BIN oss/test_import_grain.py
   $PYTHON_BIN oss/test_import_tensorflow.py

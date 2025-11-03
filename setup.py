@@ -9,7 +9,7 @@ REQUIRED_PACKAGES = [
     'etils[epath]',
 ]
 
-TF_PACKAGE = ['tensorflow>=2.20.0']
+TF_PACKAGE = ['tensorflow>=2.19.1.1']
 
 BEAM_EXTRAS = [
     'apache-beam[gcp]>=2.53.0',
@@ -31,7 +31,7 @@ class BinaryDistribution(Distribution):
 
 setup(
     name='array_record',
-    version='0.8.1',
+    version='0.8.1.1',
     description='A file format that achieves a new frontier of IO efficiency',
     author='ArrayRecord team',
     author_email='no-reply@google.com',
