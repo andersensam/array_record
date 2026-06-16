@@ -27,7 +27,7 @@ bazel_dep(name = "platforms", version = "0.0.11")
 
 # We force the protobuf version to be 28.3 because 29.x (that is required by rules_python) causes
 # segfault when importing TensorFlow due to a conflict with TF's protobuf version.
-bazel_dep(name = "protobuf", version = "29.0-rc3")
+bazel_dep(name = "protobuf", version = "28.3")
 single_version_override(
     module_name = "protobuf",
     version = "28.3",
@@ -47,7 +47,7 @@ SUPPORTED_PYTHON_VERSIONS = [
     "3.14",
 ]
 
-DEFAULT_PYTHON_VERSION = "3.13"
+DEFAULT_PYTHON_VERSION = "3.12"
 
 python_configure = use_extension("@pybind11_bazel//:python_configure.bzl", "extension")
 use_repo(python_configure, "local_config_python")
