@@ -13,11 +13,11 @@ pybind_extension(
     srcs = ["array_record_module.cc"],
     linkopts = select({
         "@platforms//os:macos": ["-Wl,-exported_symbols_list,$(location :exported_symbols_mac.lds)"],
-        "//conditions:default": ["-Wl,--version-script=$(location :version_script.lds)"],
+        "//conditions:default": [],
     }),
     additional_linker_inputs = select({
         "@platforms//os:macos": [":exported_symbols_mac.lds"],
-        "//conditions:default": [":version_script.lds"],
+        "//conditions:default": [],
     }),
     deps = [
         "@abseil-cpp//absl/status",
